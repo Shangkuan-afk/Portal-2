@@ -80,29 +80,24 @@ ui <- fluidPage(
                                    submitButton("Submit", icon=NULL, width = NULL)          
                           ),
                           helpText("Click the button after filled all gaps"),
-                          hr(),
-                          fileInput("file1", "Choose CSV File",
-                                    multiple = FALSE,
-                                    accept = c("text/csv",
-                                               "text/comma-separated-values,text/plain",
-                                               ".csv"))
+                          hr()
                         ),
                         mainPanel(
                           fluidRow(
                             column(6,
-                              wellPanel(
-                                flowLayout(plotOutput("PRRU", width="200%")),
-                                flowLayout(plotOutput("PRSP", width="200%")))
+                                   wellPanel(
+                                     flowLayout(plotOutput("PRRU", width="200%")),
+                                     flowLayout(plotOutput("PRSP", width="200%")))
                             ),
-
+                            
                             column(6,
-                              wellPanel(flowLayout(plotOutput("PLRU", width="200%")),
-                                        flowLayout(plotOutput("PLSP", width="200%")
-                                                   
-                                        )
-                              )
+                                   wellPanel(flowLayout(plotOutput("PLRU", width="200%")),
+                                             flowLayout(plotOutput("PLSP", width="200%")
+                                                        
+                                             )
+                                   )
                             )
-
+                            
                           ),
                           fluidRow(
                             column(6,
@@ -114,41 +109,12 @@ ui <- fluidPage(
                         )
                       )),
              
-             tabPanel("Customer", fluid = TRUE, icon = icon("globe-americas"),
+             tabPanel("Manufacturer", fluid = TRUE, icon = icon("globe-americas"),
                       tags$style(button_color_css),
                       
                       sidebarLayout(
                         sidebarPanel(
-                          tabPanel("Insert Prescription", 
-                                   
-                                   #Heading
-                                   h2("Right Eye"),
-                                   #Right Eye Input UI 
-                                   wellPanel(flowLayout(numericInput("RSphere", label = "RSph", value = "1.5",-10,10,0.25),
-                                                        numericInput("RCylinder", label = "RCyl", value = "1",-10,10,0.25),
-                                                        numericInput("RAxis", label = "RAxis", "90",1,180,1),
-                                                        numericInput("RADD", label = "RAdd", "2",0,10,0.25)
-                                   )),
-                                   #Heading
-                                   h2("Left Eye"),
-                                   #Left Eye Input UI
-                                   wellPanel(flowLayout(numericInput("LSphere", label = "LSph", value = "1.5",-10,10,0.25),
-                                                        numericInput("LCylinder", label = "LCyl", value = "1",-10,10,0.25),
-                                                        numericInput("LAxis", label = "LAxis", "90",1,180,1),
-                                                        numericInput("LADD", label = "LAdd", "2",-10,10,0.25)
-                                   )),
-                                   
-                                   #Additional Parameter
-                                   h2("Additional Parameters"),
-                                   wellPanel(flowLayout(selectInput("SMaterial",label="Material",c("Crown Glass","CR-39")),
-                                                        numericInput("L", label = "Distance from Far Zone to the origin (mm)", value="10"),
-                                                        numericInput("h", label = "Length of the corridor (mm)",value= "30")
-                                   )),
-                                   
-                                   #Submit Button
-                                   submitButton("Submit", icon=NULL, width = NULL)          
-                          ),
-                          helpText("Click the button after filled all gaps"),
+                          helpText("Upload the CSV file of customer prescription"),
                           hr(),
                           fileInput("file1", "Choose CSV File",
                                     multiple = FALSE,
@@ -170,8 +136,9 @@ ui <- fluidPage(
                         )
                       ))
              
-             )
+  )
 )
+
 
 server <- function(input, output, session){
   
